@@ -24,15 +24,38 @@
 
   <div id="container">
     <header>
-
+		
     </header>
     
     <div id="main">
+		<div id="story">
+			<label for="enter_story_title">Enter Story Title</label><input type="text/submit/hidden/button" name="enter_story_title" value="" id="enter_story_title">
+			<label for="enter_the_first_line">Enter the First Line</label><input type="text/submit/hidden/button" name="enter_the_first_line" value="" id="enter_the_first_line">
+			
+			<div id="storyHeader">
 
+			</div>
+
+			<div id="storyContent">
+
+			</div>
+			<div id="storyContribution">
+
+			</div>
+		</div>
+		<div id="voting">
+			<ul>
+				
+			</ul>
+		</div>
     </div>
     
     <footer>
-
+		<button id="testButtonStoriesPut">testButtonStoriesPut Test</button>
+		<button id="testButtonStoriesGet">testButtonStoriesGet Test</button>
+		<button id="testButtonStoriesNameGet">testButtonStoriesNameGet Test</button>
+		<button id="testButtonStoriesCandidatesGet">testButtonStoriesCandidatesGet Test</button>
+		<button id="testButtonStoriesGet">testButtonStoriesGet Test</button>
     </footer>
   </div> <!-- end of #container -->
 
@@ -49,13 +72,154 @@
   <script src="js/profiling/config.js?v=1"></script>
 
   <script>
-   var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']]; 
-   (function(d, t) {
-    var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
-    g.async = true; g.src = '//www.google-analytics.com/ga.js'; s.parentNode.insertBefore(g, s);
-   })(document, 'script');
+	var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']]; 
+	(function(d, t) {
+		var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+		g.async = true; g.src = '//www.google-analytics.com/ga.js'; s.parentNode.insertBefore(g, s);
+	})(document, 'script');
   </script>
+
+	<script type="text/javascript" charset="utf-8">
+		$(document).ready(function()
+		{
+			$('#testButtonStoriesPut').click(registerStory);
+			$('#testButtonStoriesGet').click(retrieveStoryList);
+			$('#testButtonStoriesNameGet').click(retrieveUniqueStory);
+			$('#testButtonStoriesCandidatesGet').click(submitStoryCandidates);
+			$('#testButtonStoriesVote').click(submitStoryVote);
+		});
+		
+		<!-- -->
+		<!-- -->
 	
+		function registerStory()
+		{
+			$.ajax({
+				url: "http://stories.hackspace.ca/stories",
+				data: testInitJSON,
+				success: registerStoryCallback,
+				type: "put",
+				dataType: "json"
+			});
+		}
+		
+		
+		
+		function registerStoryCallback()
+		{
+			var returnString = 
+			$('#storyHeader').replaceWith("<h2>Callback Complete</h2>");
+		}
+		
+		var testInitJSON =
+		{
+			"title": "story so far",
+			"story_so_far": "story so far story so far story so far story so far story so far"
+		}
+		
+		<!-- -->
+		function retrieveStoryList()
+		{
+			$.ajax({
+				url: "http://stories.hackspace.ca/stories",
+				data: testInitJSON,
+				success: retrieveStoryListCallback,
+				type: "get",
+				dataType: "json"
+			});
+			
+		}
+		
+		function retrieveStoryListCallback()
+		{
+			var returnString = 
+			$('#storyHeader').replaceWith("<h2>retrieveStoryListCallback Callback Complete</h2>");
+		}
+		
+		<!-- -->
+		function retrieveStoryList()
+		{
+			$.ajax({
+				url: "http://stories.hackspace.ca/stories",
+				data: testInitJSON,
+				success: retrieveStoryListCallback,
+				type: "get",
+				dataType: "json"
+			});
+			
+		}
+		
+		function retrieveStoryListCallback()
+		{
+			var returnString = 
+			$('#storyHeader').replaceWith("<h2>retrieveStoryListCallback Callback Complete</h2>");
+		}
+
+		<!-- -->
+		function retrieveUniqueStory()
+		{
+			$.ajax({
+				url: "http://stories.hackspace.ca/stories",
+				data: testInitJSON,
+				success: retrieveStoryListCallback,
+				type: "get",
+				dataType: "json"
+			});
+
+		}
+
+		function retrieveUniqueStoryCallback()
+		{
+			var returnString = 
+			$('#storyHeader').replaceWith("<h2>retrieveStoryListCallback Callback Complete</h2>");
+		}
+				
+		<!-- -->
+		function submitStoryCandidates()
+		{
+			$.ajax({
+				url: "http://stories.hackspace.ca/stories",
+				success: retrieveStoryListCallback,
+				type: "get",
+				dataType: "json"
+			});
+		}
+		
+		function retrieveStoryListCallback()
+		{
+			var returnString = 
+				$('#storyHeader').replaceWith("<h2>submitStoryCandidatesCallback Callback Complete</h2>");
+			
+			$.getJSON('ajax/test.json', function(data)
+			{
+				$('.result').html('<p>' + data.foo + '</p>' + '<p>' + data.baz[1] + '</p>');
+			});
+			
+		}
+		
+		<!-- -->
+		function submitStoryVote()
+		{
+			url 
+			$.ajax({
+				url: "http://stories.hackspace.ca/stories/:name/candidates/:candidate_id/vote",
+				data: testInitJSON,
+				success: retrieveStoryListCallback,
+				type: "put",
+				dataType: "json"
+			});
+
+		}
+
+		function submitStoryVoteCallback()
+		{
+			
+			var returnString = 
+			$('#storyHeader').replaceWith("<h2>submitStoryVoteCallback Callback Complete</h2>");
+		}
+
+			
+	</script>
 	
 	<!--<script type="text/javascript" charset="utf-8">
 	
