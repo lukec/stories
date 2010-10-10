@@ -1,0 +1,30 @@
+MAKE YOUR OWN ADVENTURE
+
+Home page
+* Make a new story
+* See existing stories
+
+Make a new story
+* Name
+* First line of the story
+
+Story Page
+* Current story so far
+* Suggest the next line ...
+* Vote
+
+
+APIs:
+* PUT /stories
+** name, intro
+* GET /stories
+* GET /stories/:name
+** json: name, title, story_so_far, hash, possible_next_lines
+* POST /stories/:name
+** storyline, hash
+* POST /stories/:name/vote
+** hash, next_line_id
+
+Put this on democracy
+* stories.hackspace.ca
+
