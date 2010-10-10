@@ -14,7 +14,7 @@ Story Page
 * Vote
 
 
-APIs:
+APIs(democracy.local:5000):
 * PUT /stories
 ** title, story_so_far
 * GET /stories
@@ -26,4 +26,10 @@ APIs:
 
 Put this on democracy
 * stories.hackspace.ca
+* democracy.local:5000
+
+DESIGN:
+*Structure
+**Main
+**Main
 
