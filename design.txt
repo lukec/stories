@@ -16,14 +16,13 @@ Story Page
 
 APIs:
 * PUT /stories
-** name, intro
+** title, story_so_far
 * GET /stories
 * GET /stories/:name
-** json: name, title, story_so_far, hash, possible_next_lines
-* POST /stories/:name
+** json: name, title, story_so_far, hash, candidates, timer
+* POST /stories/:name/candidates
 ** storyline, hash
-* POST /stories/:name/vote
-** hash, next_line_id
+* PUT /stories/:name/candidates/:candidate_id/vote
 
 Put this on democracy
 * stories.hackspace.ca
