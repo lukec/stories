@@ -13,7 +13,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="css/style.css?v=1">
   <link rel="stylesheet" media="handheld" href="css/handheld.css?v=1">
-  <script src="js/modernizr-1.5.min.js"></script>
+  <script src="/static/js/modernizr-1.5.min.js"></script>
 
 </head>
 <!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->
@@ -60,16 +60,16 @@
   </div> <!-- end of #container -->
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-  <script>!window.jQuery && document.write('<script src="js/jquery-1.4.2.min.js"><\/script>')</script>
-  <script src="js/plugins.js?v=1"></script>
-  <script src="js/script.js?v=1"></script>
+  <script>!window.jQuery && document.write('<script src="/static/js/jquery-1.4.2.min.js"><\/script>')</script>
+  <script src="/static/js/plugins.js?v=1"></script>
+  <script src="/static/js/script.js?v=1"></script>
 
   <!--[if lt IE 7 ]>
-    <script src="js/dd_belatedpng.js?v=1"></script>
+    <script src="/static/js/dd_belatedpng.js?v=1"></script>
   <![endif]-->
 
-  <script src="js/profiling/yahoo-profiling.min.js?v=1"></script>
-  <script src="js/profiling/config.js?v=1"></script>
+  <script src="/static/js/profiling/yahoo-profiling.min.js?v=1"></script>
+  <script src="/static/js/profiling/config.js?v=1"></script>
 
   <script>
 	var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']]; 
@@ -91,23 +91,21 @@
 		<!-- -->
 		<!-- -->
 	
-		function registerStory()
-		{
-			$.ajax({
-				url: "http://stories.hackspace.ca/stories",
-				data: testInitJSON,
-				success: registerStoryCallback,
-				type: "put",
-				dataType: "json"
-			});
+		function registerStory() {
+                    $.ajax({
+                        url: "/stories",
+                        type: "post",
+                        data: {
+                            title: $("#enter_story_title").val(),
+                            story_so_far: $("#enter_the_first_line").val(),
+                        },
+                        success: registerStoryCallback,
+                    });
 		}
 		
-		
-		
-		function registerStoryCallback()
-		{
-			var returnString = 
-			$('#storyHeader').replaceWith("<h2>Callback Complete</h2>");
+		function registerStoryCallback(r) {
+                    $('#storyHeader').replaceWith("<h2>Callback Complete</h2>");
+
 		}
 		
 		var testInitJSON =
