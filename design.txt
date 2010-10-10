@@ -28,8 +28,8 @@ Put this on democracy
 * stories.hackspace.ca
 * democracy.local:5000
 
-DESIGN:
-*Structure
-**Main
-**Main
-
+DESIGN STRUCTURE:
+* Main
+** Site Header
+* #main
+** 
