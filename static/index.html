@@ -13,7 +13,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="css/style.css?v=1">
   <link rel="stylesheet" media="handheld" href="css/handheld.css?v=1">
-  <script src="/static/js/modernizr-1.5.min.js"></script>
+  <script src="js/modernizr-1.5.min.js"></script>
 
 </head>
 <!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->
@@ -41,6 +41,13 @@
 					At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 				</p>
 			</div>
+			
+			<div id="storyContentTest">
+				<p>
+					
+				</p>
+			</div>
+			
 			<div id="storyContribution">
 
 			</div>
@@ -58,20 +65,21 @@
 		<button id="testButtonStoriesNameGet">testButtonStoriesNameGet Test</button>
 		<button id="testButtonStoriesCandidatesGet">testButtonStoriesCandidatesGet Test</button>
 		<button id="testButtonStoriesGet">testButtonStoriesGet Test</button>
+		<button id="feTest">feTest</button>
     </footer>
   </div> <!-- end of #container -->
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-  <script>!window.jQuery && document.write('<script src="/static/js/jquery-1.4.2.min.js"><\/script>')</script>
-  <script src="/static/js/plugins.js?v=1"></script>
-  <script src="/static/js/script.js?v=1"></script>
+  <script>!window.jQuery && document.write('<script src="js/jquery-1.4.2.min.js"><\/script>')</script>
+  <script src="js/plugins.js?v=1"></script>
+  <script src="js/script.js?v=1"></script>
 
   <!--[if lt IE 7 ]>
-    <script src="/static/js/dd_belatedpng.js?v=1"></script>
+    <script src="js/dd_belatedpng.js?v=1"></script>
   <![endif]-->
 
-  <script src="/static/js/profiling/yahoo-profiling.min.js?v=1"></script>
-  <script src="/static/js/profiling/config.js?v=1"></script>
+  <script src="js/profiling/yahoo-profiling.min.js?v=1"></script>
+  <script src="js/profiling/config.js?v=1"></script>
 
   <script>
 	var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']]; 
@@ -90,20 +98,27 @@
 			$('#testButtonStoriesVote').click(submitStoryVote);
 			
 			$('#feTest').click(test);
+			$('#feTestJQuery').click(testJQuery);
 		});
 		
 		// test
 		
 		// 
-		
-			$("#storyContent p").click(function () {
-			      var htmlStr = $(this).html();
-			      $(this).text(htmlStr);
-			    });
 			
 			function test()
 			{
-				var storyParagraph += storyContent
+				$("#storyContent p").click(function () {
+			      var htmlStr = $(this).html();
+			      $("#storyContentTest p").html(htmlStr);
+			    });
+			}
+		
+			function testJQuery()
+			{
+				$("#storyContent p").click(function () {
+			      var htmlStr = $(this).html();
+			      $("#storyContentTest p").html(htmlStr);
+			    });
 			}
 
 			function testCallback(content)
@@ -115,21 +130,23 @@
 		
 		// test
 	
-		function registerStory() {
-                    $.ajax({
-                        url: "/stories",
-                        type: "post",
-                        data: {
-                            title: $("#enter_story_title").val(),
-                            story_so_far: $("#enter_the_first_line").val(),
-                        },
-                        success: registerStoryCallback,
-                    });
+		function registerStory()
+		{
+			$.ajax({
+				url: "http://stories.hackspace.ca/stories",
+				data: testInitJSON,
+				success: registerStoryCallback,
+				type: "put",
+				dataType: "json"
+			});
 		}
 		
-		function registerStoryCallback(r) {
-                    $('#storyHeader').replaceWith("<h2>Callback Complete</h2>");
-
+		
+		
+		function registerStoryCallback()
+		{
+			var returnString = 
+			$('#storyHeader').replaceWith("<h2>Callback Complete</h2>");
 		}
 		
 		var testInitJSON =
