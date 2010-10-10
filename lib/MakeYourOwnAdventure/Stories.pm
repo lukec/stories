@@ -48,6 +48,7 @@ sub do_resp {
                 title => $title,
                 story => $story_so_far,
                 hash => sha1_hex($story_so_far),
+                candidates => [],
             };
             $self->put_story($name, $story);
             return [201, ['Location' => "/stories/$name", 'Content-Type' => 'application/json'], [encode_json($story)]];

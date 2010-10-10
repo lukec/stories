@@ -61,7 +61,9 @@ sub get_story {
 sub put_story {
     my ($self, $story_key, $hash) = @_;
     my ($db,$g) = $self->write_db;
-    my $value = json_encode($hash);
+
+    use Data::Dumper; warn "put_story: ".Dumper($hash),$/;
+    my $value = encode_json($hash);
     unless ($db->put($story_key,$value)) {
         my $ecode = $db->ecode();
         die "put error: ".$db->errmsg($ecode);
@@ -76,13 +78,14 @@ sub add_candidate {
     my $hash = decode_json($value);
     $hash->{candidates} ||= [];
     push @{$hash->{candidates}}, [$candidate, 0];
-    my $id = $#{$hash->{candidates}} + 1;
+    my $candidate_id = $#{$hash->{candidates}} + 1;
+    use Data::Dumper; warn "created candidate $candidate_id for story $story_key : ".Dumper($hash),$/;
     $value = encode_json($hash);
     unless ($db->put($story_key,$value)) {
         my $ecode = $db->ecode();
         die "put error: ".$db->errmsg($ecode);
     }
-    return $id;
+    return $candidate_id;
 }
 
 sub vote_on_candidate {
@@ -95,6 +98,7 @@ sub vote_on_candidate {
     my $candidate = $hash->{candidates}[$candidate_id];
     return unless $candidate;
     $candidate->[1]++;
+    use Data::Dumper; warn "VOTED on candidate $candidate_id for story $story_key : ".Dumper($hash),$/;
     $value = encode_json($hash);
     unless ($db->put($story_key,$value)) {
         my $ecode = $db->ecode();
@@ -109,6 +113,7 @@ sub finalize_candidates {
     my $value = $db->get($story_key);
     return unless $value;
     my $hash = decode_json($value);
+    use Data::Dumper; warn "FINALIZE on story $story_key : ".Dumper($hash),$/;
     my $top;
     ($top,undef) = sort { $b->[1] <=> $a->[1] } @{$hash->{candidates}};
 
