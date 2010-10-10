@@ -15,9 +15,9 @@ Story Page
 
 
 APIs:
-* POST /stories (Create a new story)
+* Done: POST /stories (Create a new story)
 ** title, story_so_far
-* GET /stories
+* Done: GET /stories
 * GET /stories/:name
 ** json: name, title, story_so_far, hash, candidates, timer
 * POST /stories/:name/candidates
