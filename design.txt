@@ -14,8 +14,8 @@ Story Page
 * Vote
 
 
-APIs(democracy.local:5000):
-* PUT /stories
+APIs:
+* POST /stories (Create a new story)
 ** title, story_so_far
 * GET /stories
 * GET /stories/:name
