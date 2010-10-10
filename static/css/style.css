@@ -76,15 +76,36 @@ button {  width: auto; overflow: visible; }
     Author: 
  */
 
-#story
+#container
 {
-	
+	position:absolute;
+	width:980px;
+	margin: 0 0 0 -490px;
+	left:50%;
 }
+
+header h1
+{
+	font-size: 2em;
+	font: Verdana;
+	font-color: #333;
+}
+
+#main
+{
+	position:relative;
+	background-color:#ccc;
+}
+
 #story
 {
 	
 }
 
+#story
+{
+	
+}
 
 #storyHeader
 {

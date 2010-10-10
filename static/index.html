@@ -24,7 +24,7 @@
 
   <div id="container">
     <header>
-		
+		<h1>Stories</h1>
     </header>
     
     <div id="main">
@@ -33,11 +33,13 @@
 			<label for="enter_the_first_line">Enter the First Line</label><input type="text/submit/hidden/button" name="enter_the_first_line" value="" id="enter_the_first_line">
 			
 			<div id="storyHeader">
-
+				<h2>Current Story</h2>
 			</div>
 
 			<div id="storyContent">
-
+				<p>
+					At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+				</p>
 			</div>
 			<div id="storyContribution">
 
@@ -86,10 +88,32 @@
 			$('#testButtonStoriesNameGet').click(retrieveUniqueStory);
 			$('#testButtonStoriesCandidatesGet').click(submitStoryCandidates);
 			$('#testButtonStoriesVote').click(submitStoryVote);
+			
+			$('#feTest').click(test);
 		});
 		
-		<!-- -->
-		<!-- -->
+		// test
+		
+		// 
+		
+			$("#storyContent p").click(function () {
+			      var htmlStr = $(this).html();
+			      $(this).text(htmlStr);
+			    });
+			
+			function test()
+			{
+				var storyParagraph += storyContent
+			}
+
+			function testCallback(content)
+			{
+				var returnString = 
+				$('#storyHeader').replaceWith("<h2>retrieveStoryListCallback Callback Complete</h2>");
+			}
+		// 
+		
+		// test
 	
 		function registerStory() {
                     $.ajax({
@@ -182,7 +206,7 @@
 			});
 		}
 		
-		function retrieveStoryListCallback()
+		function submitStoryCandidatesCallback()
 		{
 			var returnString = 
 				$('#storyHeader').replaceWith("<h2>submitStoryCandidatesCallback Callback Complete</h2>");
@@ -190,8 +214,10 @@
 			$.getJSON('ajax/test.json', function(data)
 			{
 				$('.result').html('<p>' + data.foo + '</p>' + '<p>' + data.baz[1] + '</p>');
+				$('.second').replaceWith('<h2>New heading</h2>');
 			});
 			
+			$('.second').replaceWith('<h2>New heading</h2>');
 		}
 		
 		<!-- -->
@@ -215,8 +241,7 @@
 			var returnString = 
 			$('#storyHeader').replaceWith("<h2>submitStoryVoteCallback Callback Complete</h2>");
 		}
-
-			
+		
 	</script>
 	
 	<!--<script type="text/javascript" charset="utf-8">
