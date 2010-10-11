@@ -99,6 +99,12 @@
 			
 			$('#feTest').click(test);
 			$('#feTestJQuery').click(testJQuery);
+			$("#storyContent p").click(function ()
+			{
+				var htmlStr = $(this).html();
+				$("#storyContent p").html(htmlStr);
+				console.log("test initiated");
+		    });
 		});
 		
 		// test
@@ -107,18 +113,15 @@
 			
 			function test()
 			{
-				$("#storyContent p").click(function () {
-			      var htmlStr = $(this).html();
-			      $("#storyContentTest p").html(htmlStr);
-			    });
+				console.log("test initiated");
+				var htmlStr = $(this).html();
+				$("#storyContent p").html(htmlStr);
 			}
 		
 			function testJQuery()
 			{
-				$("#storyContent p").click(function () {
-			      var htmlStr = $(this).html();
-			      $("#storyContentTest p").html(htmlStr);
-			    });
+				var htmlStr = $(this).html();
+				$("#storyContentTest p").html(htmlStr);
 			}
 
 			function testCallback(content)
